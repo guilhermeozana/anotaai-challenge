@@ -1,5 +1,6 @@
 package com.gcampos.desafioanotaai.service;
 
+import com.gcampos.desafioanotaai.domain.dto.MessageDTO;
 import com.gcampos.desafioanotaai.domain.dto.ProductDTO;
 import com.gcampos.desafioanotaai.domain.exception.CategoryNotFoundException;
 import com.gcampos.desafioanotaai.domain.exception.ProductNotFoundException;
@@ -20,6 +21,8 @@ public class ProductService {
 
     private final CategoryService categoryService;
 
+    private final AwsSnsService snsService;
+
     public List<Product> getAll() {
         return productRepository.findAll();
     }
@@ -32,19 +35,35 @@ public class ProductService {
         Category category = categoryService.findById(productDTO.categoryId())
                 .orElseThrow(CategoryNotFoundException::new);
 
-        Product product = new Product(productDTO, category);
+        Product product = new Product(productDTO);
 
-        return productRepository.save(product);
+        Product savedProduct = productRepository.save(product);
+
+        snsService.publish(new MessageDTO(savedProduct.getOwnerId()));
+
+        return savedProduct;
     }
 
     public Product update(String id, ProductDTO productDTO) {
         Product product = findById(id).orElseThrow(ProductNotFoundException::new);
 
         BeanUtils.copyProperties(productDTO, product);
+        if(!productDTO.title().isEmpty()) product.setTitle(productDTO.title());
+        if(!productDTO.description().isEmpty()) product.setDescription(productDTO.description());
+        if(!(productDTO.price() == null)) product.setPrice(productDTO.price());
 
-        categoryService.findById(productDTO.categoryId()).ifPresent(product::setCategory);
+        if(!productDTO.categoryId().isEmpty()) {
+            product.setCategoryId(productDTO.categoryId());
 
-        return productRepository.save(product);
+            categoryService.findById(productDTO.categoryId())
+                    .orElseThrow(CategoryNotFoundException::new);
+        }
+
+        Product updatedProduct = productRepository.save(product);
+
+        snsService.publish(new MessageDTO(updatedProduct.getOwnerId()));
+
+        return updatedProduct;
     }
 
     public void delete(String id) {

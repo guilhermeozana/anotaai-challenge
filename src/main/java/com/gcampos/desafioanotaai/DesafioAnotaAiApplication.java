@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@EnableMongoRepositories()
+@EnableMongoRepositories
 public class DesafioAnotaAiApplication {
 
 	public static void main(String[] args) {

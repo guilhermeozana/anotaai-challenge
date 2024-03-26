@@ -1,0 +1,8 @@
+aws:
+  accessKeyId: AKIA56YTJG2RE26DXDF7
+  secretKey: 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
+  region: us-east-1
+  sns:
+    topic:
+      catalog:
+        arn: arn:aws:sns:us-east-1:959428769442:catalog-emit

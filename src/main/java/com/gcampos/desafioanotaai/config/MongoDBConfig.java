@@ -1,4 +1,4 @@
-package com.gcampos.desafioanotaai.config.mongo;
+package com.gcampos.desafioanotaai.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

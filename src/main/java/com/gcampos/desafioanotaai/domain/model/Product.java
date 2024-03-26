@@ -24,10 +24,9 @@ public class Product {
 
     private Double price;
 
-    private Category category;
+    private String categoryId;
 
-    public Product(ProductDTO productDTO, Category category) {
+    public Product(ProductDTO productDTO) {
         BeanUtils.copyProperties(productDTO, this);
-        this.category = category;
     }
 }

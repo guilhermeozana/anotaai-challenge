@@ -33,7 +33,8 @@ public class CategoryService {
     public Category update(String id, CategoryDTO categoryDTO) {
         Category category = findById(id).orElseThrow(CategoryNotFoundException::new);
 
-        BeanUtils.copyProperties(categoryDTO, category);
+        if(!categoryDTO.title().isEmpty()) category.setTitle(categoryDTO.title());
+        if(!categoryDTO.description().isEmpty()) category.setDescription(categoryDTO.description());
 
         return categoryRepository.save(category);
     }
