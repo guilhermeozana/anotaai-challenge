@@ -32,14 +32,14 @@ public class ProductService {
     }
 
     public Product create(ProductDTO productDTO) {
-        Category category = categoryService.findById(productDTO.categoryId())
+        categoryService.findById(productDTO.categoryId())
                 .orElseThrow(CategoryNotFoundException::new);
 
         Product product = new Product(productDTO);
 
         Product savedProduct = productRepository.save(product);
 
-        snsService.publish(new MessageDTO(savedProduct.getOwnerId()));
+        snsService.publish(new MessageDTO(savedProduct.toString()));
 
         return savedProduct;
     }
@@ -47,21 +47,20 @@ public class ProductService {
     public Product update(String id, ProductDTO productDTO) {
         Product product = findById(id).orElseThrow(ProductNotFoundException::new);
 
-        BeanUtils.copyProperties(productDTO, product);
+        if(!productDTO.categoryId().isEmpty()) {
+            categoryService.findById(productDTO.categoryId())
+                    .orElseThrow(CategoryNotFoundException::new);
+
+            product.setCategoryId(productDTO.categoryId());
+        }
+
         if(!productDTO.title().isEmpty()) product.setTitle(productDTO.title());
         if(!productDTO.description().isEmpty()) product.setDescription(productDTO.description());
         if(!(productDTO.price() == null)) product.setPrice(productDTO.price());
 
-        if(!productDTO.categoryId().isEmpty()) {
-            product.setCategoryId(productDTO.categoryId());
-
-            categoryService.findById(productDTO.categoryId())
-                    .orElseThrow(CategoryNotFoundException::new);
-        }
-
         Product updatedProduct = productRepository.save(product);
 
-        snsService.publish(new MessageDTO(updatedProduct.getOwnerId()));
+        snsService.publish(new MessageDTO(updatedProduct.toString()));
 
         return updatedProduct;
     }

@@ -4,6 +4,8 @@ import com.gcampos.desafioanotaai.domain.dto.CategoryDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,5 +24,17 @@ public class Category {
 
     public Category(CategoryDTO categoryDTO) {
         BeanUtils.copyProperties(categoryDTO, this);
+    }
+
+    @Override
+    public String toString() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", id);
+        jsonObject.put("title", title);
+        jsonObject.put("description", description);
+        jsonObject.put("ownerId", ownerId);
+        jsonObject.put("type", "category");
+
+        return jsonObject.toString();
     }
 }

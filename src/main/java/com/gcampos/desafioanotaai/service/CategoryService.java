@@ -1,6 +1,7 @@
 package com.gcampos.desafioanotaai.service;
 
 import com.gcampos.desafioanotaai.domain.dto.CategoryDTO;
+import com.gcampos.desafioanotaai.domain.dto.MessageDTO;
 import com.gcampos.desafioanotaai.domain.model.Category;
 import com.gcampos.desafioanotaai.domain.exception.CategoryNotFoundException;
 import com.gcampos.desafioanotaai.repository.CategoryRepository;
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
+    private final AwsSnsService snsService;
+
     public List<Category> getAll() {
         return categoryRepository.findAll();
     }
@@ -27,7 +30,11 @@ public class CategoryService {
     public Category create(CategoryDTO categoryDTO) {
         Category category = new Category(categoryDTO);
 
-        return categoryRepository.save(category);
+        Category savedCategory = categoryRepository.save(category);
+
+        snsService.publish(new MessageDTO(savedCategory.toString()));
+
+        return savedCategory;
     }
 
     public Category update(String id, CategoryDTO categoryDTO) {
@@ -36,7 +43,11 @@ public class CategoryService {
         if(!categoryDTO.title().isEmpty()) category.setTitle(categoryDTO.title());
         if(!categoryDTO.description().isEmpty()) category.setDescription(categoryDTO.description());
 
-        return categoryRepository.save(category);
+        Category updatedCategory = categoryRepository.save(category);
+
+        snsService.publish(new MessageDTO(updatedCategory.toString()));
+
+        return updatedCategory;
     }
 
     public void delete(String id) {

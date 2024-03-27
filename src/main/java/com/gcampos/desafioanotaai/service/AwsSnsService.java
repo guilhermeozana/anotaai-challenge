@@ -15,8 +15,7 @@ public class AwsSnsService {
     private final Topic catalogTopic;
 
 
-    public void publish(MessageDTO message) {
-        System.out.println(message.message());
-        this.snsClient.publish(catalogTopic.getTopicArn(), message.message());
+    public void publish(MessageDTO messageDTO) {
+        this.snsClient.publish(catalogTopic.getTopicArn(), messageDTO.message());
     }
 }
