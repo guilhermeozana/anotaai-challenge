@@ -10,55 +10,6 @@ This project is an API built using **Java, Spring, AWS SQS, Mongo DB and AWS S3.
 
 The Microservice was developed to solve [AnotaAi Backend Challenge](https://github.com/githubanotaai/new-test-backend-nodejs).
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Database](#database)
-- [Contributing](#contributing)
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/Fernanda-Kipper/desafio-anotaai-backend.git
-```
-
-2. Install dependencies with Maven
-
-3. Create a configuration with your runtime environment variables with your AWS Credentials that are used in `application.properties`
-
-```yaml
-aws.region=us-east-1
-aws.accessKeyId=${AWS_KEY_ID}
-aws.secretKey=${AWS_SECRET}
-```
-
-**Config Values**
-
-```yaml
-AWS_KEY_ID=VALUE;AWS_SECRET=VALUE2
-```
-
-**Mongo**
-
-1. Run in terminal:
-```bash
-docker compose up -d
-```
-
-2. Create a DB for mongo using mongo express: http://localhost:8081.
-
-3. Log with admin:pass and create a database called 'product-catalog'.
-
-## Usage
-
-1. Start the application with Maven
-2. The API will be accessible at http://localhost:8080
-
 ## API Endpoints
 The API provides the following endpoints:
 
