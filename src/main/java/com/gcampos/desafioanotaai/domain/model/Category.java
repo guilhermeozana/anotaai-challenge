@@ -1,9 +1,7 @@
 package com.gcampos.desafioanotaai.domain.model;
 
 import com.gcampos.desafioanotaai.domain.dto.CategoryDTO;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import netscape.javascript.JSObject;
 import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Category {
 
     @Id

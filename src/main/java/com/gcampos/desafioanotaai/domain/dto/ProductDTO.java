@@ -1,7 +1,9 @@
 package com.gcampos.desafioanotaai.domain.dto;
 
-import com.gcampos.desafioanotaai.domain.model.Category;
 
+import lombok.Builder;
+
+@Builder
 public record ProductDTO(
         String title,
 
