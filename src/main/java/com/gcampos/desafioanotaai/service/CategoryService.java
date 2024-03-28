@@ -6,6 +6,7 @@ import com.gcampos.desafioanotaai.domain.model.Category;
 import com.gcampos.desafioanotaai.domain.exception.CategoryNotFoundException;
 import com.gcampos.desafioanotaai.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +55,11 @@ public class CategoryService {
         Category category = findById(id).orElseThrow(CategoryNotFoundException::new);
 
         categoryRepository.delete(category);
+
+        JSONObject idJson = new JSONObject()
+            .put("id", category.getId())
+            .put("ownerId", category.getOwnerId());
+
+        snsService.publish(new MessageDTO(idJson.toString()));
     }
 }

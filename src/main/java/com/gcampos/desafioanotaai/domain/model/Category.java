@@ -26,6 +26,7 @@ public class Category {
         BeanUtils.copyProperties(categoryDTO, this);
     }
 
+
     @Override
     public String toString() {
         JSONObject jsonObject = new JSONObject();

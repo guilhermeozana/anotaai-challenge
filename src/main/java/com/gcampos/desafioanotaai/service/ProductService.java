@@ -8,6 +8,7 @@ import com.gcampos.desafioanotaai.domain.model.Category;
 import com.gcampos.desafioanotaai.domain.model.Product;
 import com.gcampos.desafioanotaai.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -69,5 +70,11 @@ public class ProductService {
         Product product = findById(id).orElseThrow(ProductNotFoundException::new);
 
         productRepository.delete(product);
+
+        JSONObject idJson = new JSONObject()
+            .put("id", product.getId())
+            .put("ownerId", product.getOwnerId());
+
+        snsService.publish(new MessageDTO(idJson.toString()));
     }
 }
