@@ -7,11 +7,9 @@ import com.gcampos.desafioanotaai.domain.exception.CategoryNotFoundException;
 import com.gcampos.desafioanotaai.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +22,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> findById(String id) {
-        return categoryRepository.findById(id);
+    public Category findById(String id) {
+        return categoryRepository.findById(id).orElseThrow(CategoryNotFoundException::new);
     }
 
     public Category create(CategoryDTO categoryDTO) {
@@ -39,7 +37,7 @@ public class CategoryService {
     }
 
     public Category update(String id, CategoryDTO categoryDTO) {
-        Category category = findById(id).orElseThrow(CategoryNotFoundException::new);
+        Category category = findById(id);
 
         if(!categoryDTO.title().isEmpty()) category.setTitle(categoryDTO.title());
         if(!categoryDTO.description().isEmpty()) category.setDescription(categoryDTO.description());
@@ -52,7 +50,7 @@ public class CategoryService {
     }
 
     public void delete(String id) {
-        Category category = findById(id).orElseThrow(CategoryNotFoundException::new);
+        Category category = findById(id);
 
         categoryRepository.delete(category);
 

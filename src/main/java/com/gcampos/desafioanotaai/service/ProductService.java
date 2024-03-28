@@ -28,13 +28,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> findById(String id){
-        return productRepository.findById(id);
-    }
-
     public Product create(ProductDTO productDTO) {
-        categoryService.findById(productDTO.categoryId())
-                .orElseThrow(CategoryNotFoundException::new);
+        categoryService.findById(productDTO.categoryId());
 
         Product product = new Product(productDTO);
 
@@ -46,11 +41,10 @@ public class ProductService {
     }
 
     public Product update(String id, ProductDTO productDTO) {
-        Product product = findById(id).orElseThrow(ProductNotFoundException::new);
+        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
 
         if(!productDTO.categoryId().isEmpty()) {
-            categoryService.findById(productDTO.categoryId())
-                    .orElseThrow(CategoryNotFoundException::new);
+            categoryService.findById(productDTO.categoryId());
 
             product.setCategoryId(productDTO.categoryId());
         }
@@ -67,7 +61,7 @@ public class ProductService {
     }
 
     public void delete(String id) {
-        Product product = findById(id).orElseThrow(ProductNotFoundException::new);
+        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
 
         productRepository.delete(product);
 
