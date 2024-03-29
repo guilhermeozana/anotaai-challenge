@@ -2,12 +2,9 @@ mongodb-uri: ${MONGODB_URI:mongodb://localhost:27017/product-catalog}
 
 server:
   port: 8888
-  data:
-    mongodb:
-      uri: ${mongodb-uri}
-      auto-index-creation: true
-      repositories:
-        enabled: true
+
+mongoReplicaSetProperties:
+  enabled: true
 
 aws:
   accessKeyId: ${AWS_ACCESS_KEY_ID}
