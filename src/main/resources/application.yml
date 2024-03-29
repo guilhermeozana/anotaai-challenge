@@ -1,4 +1,7 @@
-mongodb-uri: ${MONGODB_URI:mongodb://localhost:27017/product-catalog}
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/product-catalog}
 
 aws:
   accessKeyId: ${AWS_ACCESS_KEY_ID}

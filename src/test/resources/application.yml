@@ -1,5 +1,3 @@
-mongodb-uri: ${MONGODB_URI:mongodb://localhost:27017/product-catalog}
-
 server:
   port: 8888
 

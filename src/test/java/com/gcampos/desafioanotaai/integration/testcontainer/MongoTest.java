@@ -1,7 +1,6 @@
 package com.gcampos.desafioanotaai.integration.testcontainer;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.testcontainers.context.ImportTestcontainers;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
