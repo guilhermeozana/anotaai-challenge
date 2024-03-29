@@ -27,4 +27,15 @@ public class ProductCreator {
                 .categoryId("2")
                 .build();
     }
+
+    public static ProductDTO buildProductDTOWithExistentCategory(String categoryId) {
+        return ProductDTO
+                .builder()
+                .price(2.5)
+                .title("Test")
+                .description("Product Test")
+                .ownerId("123")
+                .categoryId(categoryId)
+                .build();
+    }
 }
