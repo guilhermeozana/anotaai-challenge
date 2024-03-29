@@ -2,7 +2,7 @@ package com.gcampos.desafioanotaai.integration.controller;
 
 import com.gcampos.desafioanotaai.domain.dto.CategoryDTO;
 import com.gcampos.desafioanotaai.domain.model.Category;
-import com.gcampos.desafioanotaai.integration.testcontainer.AbstractIntegrationTest;
+import com.gcampos.desafioanotaai.integration.testcontainer.MongoTest;
 import com.gcampos.desafioanotaai.util.CategoryCreator;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -25,9 +25,10 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.*;
 
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class CategoryIntegrationControllerTest extends AbstractIntegrationTest {
+public class CategoryIntegrationControllerTest extends MongoTest {
 
     static int serverPort = 8888;
 

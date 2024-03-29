@@ -1,6 +1,6 @@
 package com.gcampos.desafioanotaai.integration.swagger;
 
-import com.gcampos.desafioanotaai.integration.testcontainer.AbstractIntegrationTest;
+import com.gcampos.desafioanotaai.integration.testcontainer.MongoTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-class SwaggerIntegrationTest extends AbstractIntegrationTest {
+class SwaggerIntegrationTest extends MongoTest {
     @Value("${server.port}")
     int serverPort = 8888;
 
