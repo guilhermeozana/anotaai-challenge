@@ -56,7 +56,7 @@ jobs:
 
       - name: Run Docker container
         run: |
-          docker run --name catalog-api \
+          docker run --name catalog-api -p 8080:8080 \
           -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
           -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
           -e MONGODB_URI=${{ secrets.MONGO_URI }} \
