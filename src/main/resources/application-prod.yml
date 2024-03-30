@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://mongo:27017/product-catalog}
+      uri: ${MONGODB_URI}
 
 aws:
   accessKeyId: ${AWS_ACCESS_KEY_ID}
