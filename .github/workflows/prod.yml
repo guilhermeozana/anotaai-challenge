@@ -51,6 +51,9 @@ jobs:
       - name: Pull image from Docker Hub
         run: docker pull guilhermeozana/catalog-api:latest
 
+      - name: Remove existent docker container
+        run: docker container rm -f catalog-api
+
       - name: Run Docker container
         run: |
           docker run --name catalog-api \
