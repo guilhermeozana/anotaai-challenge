@@ -12,8 +12,6 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.type.TypeReference;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.DeserializationFeature;
@@ -30,7 +28,7 @@ import static org.junit.Assert.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class CategoryControllerIntegration extends MongoDBContainerInitializer {
+public class CategoryIntegrationControllerTest extends MongoDBContainerInitializer {
 
     static int serverPort = 8888;
 
@@ -52,7 +50,7 @@ public class CategoryControllerIntegration extends MongoDBContainerInitializer {
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
-        
+
         categoryDTO = CategoryCreator.buildCategoryDTO();
     }
 
@@ -77,7 +75,7 @@ public class CategoryControllerIntegration extends MongoDBContainerInitializer {
 
         BeanUtils.copyProperties(createdCategory, categoryDTO);
         categoryId = createdCategory.getId();
-        
+
 
         assertNotNull(createdCategory);
         assertFalse(createdCategory.getId().isEmpty());
