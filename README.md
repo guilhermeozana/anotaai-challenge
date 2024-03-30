@@ -14,5 +14,6 @@ The Microservice was developed to solve [AnotaAi Backend Challenge](https://gith
 
 ## Project Structure
 
-![Diagrama sem nome drawio](https://github.com/guilhermeozana/anotaai-challenge/assets/69025200/9d67dcb2-bd0e-47b6-978b-6a6fe602022f)
+![Diagrama sem nome drawio (1)](https://github.com/guilhermeozana/anotaai-challenge/assets/69025200/461b98dc-6e93-440f-bc9e-2128d8c6c0bc)
+
 
