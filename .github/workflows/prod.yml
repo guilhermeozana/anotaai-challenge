@@ -45,12 +45,16 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Pull image from Docker Hub
         run: docker pull guilhermeozana/catalog-api:latest
-      - name: Run Docker containers
+
+      - name: Run Docker container
         run: |
           docker run --name catalog-api \
-          -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \ 
+          -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
           -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
           -e MONGODB_URI=${{ secrets.MONGO_URI }} \
           --network=anotaai-network guilhermeozana/catalog-api:latest
