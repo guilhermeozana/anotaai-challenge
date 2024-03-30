@@ -23,7 +23,10 @@ jobs:
           java-version: "17"
 
       - name: Build project
-        run: mvn clean package
+        run: mvn clean package -DskipTests=true
+
+      - name: Run tests
+        run: mvn clean test verify
 
       - name: Build Docker Image
         run: docker build -t ${{secrets.DOCKER_USERNAME}}/catalog-api:${{ github.run_id }} .
