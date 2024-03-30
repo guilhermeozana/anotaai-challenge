@@ -6,7 +6,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
-This project is an API built using **Java, Spring, AWS SQS, Mongo DB and AWS S3.**
+This project is an API built using **Spring Boot, MongoDB, AWS (EC2, SQS, SNS, Lambda and S3), Docker and CI/CD (Github Actions).**
 
 The Microservice was developed to solve [AnotaAi Backend Challenge](https://github.com/githubanotaai/new-test-backend-nodejs).
 
