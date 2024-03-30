@@ -10,7 +10,9 @@ This project is an API built using **Java, Spring, AWS SQS, Mongo DB and AWS S3.
 
 The Microservice was developed to solve [AnotaAi Backend Challenge](https://github.com/githubanotaai/new-test-backend-nodejs).
 
-
+## How to access
+To access the endpoints of this project I provided the [Swagger UI](http://18.207.212.126:8080/swagger-ui/index.html) API documentation
+ 
 
 ## Project Structure
 
