@@ -3,7 +3,7 @@ package com.gcampos.desafioanotaai.integration.controller;
 import com.gcampos.desafioanotaai.domain.dto.ProductDTO;
 import com.gcampos.desafioanotaai.domain.model.Category;
 import com.gcampos.desafioanotaai.domain.model.Product;
-import com.gcampos.desafioanotaai.integration.testcontainer.MongoTest;
+import com.gcampos.desafioanotaai.integration.testcontainer.MongoDBContainerInitializer;
 import com.gcampos.desafioanotaai.util.CategoryCreator;
 import com.gcampos.desafioanotaai.util.ProductCreator;
 import com.mongodb.client.MongoClient;
@@ -13,9 +13,11 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
-        import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.type.TypeReference;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.DeserializationFeature;
@@ -31,7 +33,7 @@ import static org.junit.Assert.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ProductIntegrationControllerTest extends MongoTest {
+public class ProductControllerIntegration extends MongoDBContainerInitializer {
 
     @Autowired
     private MongoClient mongoClient;
@@ -47,6 +49,7 @@ public class ProductIntegrationControllerTest extends MongoTest {
 
     @BeforeAll
     public static void setup() throws IOException {
+
         //Given
         objectMapper = new ObjectMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
