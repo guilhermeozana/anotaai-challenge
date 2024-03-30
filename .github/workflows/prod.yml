@@ -60,7 +60,7 @@ jobs:
           -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
           -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
           -e MONGODB_URI=${{ secrets.MONGO_URI }} \
-          --network=anotaai-network guilhermeozana/catalog-api:latest
+          --network=anotaai-network -d guilhermeozana/catalog-api:latest
           
           
           
