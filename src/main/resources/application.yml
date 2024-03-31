@@ -11,3 +11,16 @@ aws:
     topic:
       catalog:
         arn: arn:aws:sns:us-east-1:959428769442:catalog-emit
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: 'health,prometheus'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
