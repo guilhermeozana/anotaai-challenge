@@ -15,7 +15,7 @@ The Microservice was developed to solve [AnotaAi Backend Challenge](https://gith
 To access the endpoints of this project I provided the [Swagger UI](http://18.207.212.126:8080/swagger-ui/index.html) API documentation
 
 ## Application Metrics
-In this project I used Spring Boot Actuator to exposure the metrics of the application and Prometheus with Grafana to show them. The dashboards can be accessed [here]([https://github.com/githubanotaai/new-test-backend-nodejs](http://18.207.212.126:3000/d/OS7-NUiGz/spring-boot-and-endpoint-metrics-2-0?orgId=1&refresh=10s)). 
+In this project I used Spring Boot Actuator to exposure the metrics of the application and Prometheus with Grafana to show them. The dashboards can be accessed [here](http://18.207.212.126:3000/d/OS7-NUiGz/spring-boot-and-endpoint-metrics-2-0?orgId=1&refresh=10s&from=1711915599162&to=1711917399162). 
 
 ## Project Structure
 
